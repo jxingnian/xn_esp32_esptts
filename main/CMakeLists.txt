@@ -6,4 +6,6 @@ idf_component_register(SRCS "main.c"
                             xn_coze_chat 
                             esp_timer
                             xn_audio_manager
-                       INCLUDE_DIRS "." "coze_chat_app")
+                       INCLUDE_DIRS "." 
+                            "coze_chat_app"
+                            "audio_app")
