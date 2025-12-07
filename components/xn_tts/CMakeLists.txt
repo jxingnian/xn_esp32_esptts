@@ -6,6 +6,8 @@ idf_component_register(
         "esp_tts"
     PRIV_REQUIRES
         freertos
+    EMBED_FILES
+        "esp_tts/esp_tts_voice_data_xiaole.dat"
 )
 
 # 添加ESP-TTS库路径

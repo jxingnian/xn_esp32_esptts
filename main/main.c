@@ -20,6 +20,7 @@
 #include "coze_chat.h"
 #include "coze_chat_app.h"
 #include "audio_app/audio_config_app.h"
+#include "tts_test.h"
 
 static const char *TAG = "app";
 
@@ -33,21 +34,21 @@ static void app_wifi_event_cb(wifi_manage_state_t state)
     case WIFI_MANAGE_STATE_CONNECTED:
         if (!s_coze_started) {
             ESP_LOGI(TAG, "WiFi connected, init Coze chat");
-            if (coze_chat_app_init() == ESP_OK) {
-                s_coze_started = true;
-            } else {
-                ESP_LOGE(TAG, "Coze chat init failed on WiFi connect");
-            }
+            // if (coze_chat_app_init() == ESP_OK) {
+            //     s_coze_started = true;
+            // } else {
+            //     ESP_LOGE(TAG, "Coze chat init failed on WiFi connect");
+            // }
         }
         break;
 
     case WIFI_MANAGE_STATE_DISCONNECTED:
     case WIFI_MANAGE_STATE_CONNECT_FAILED:
-        if (s_coze_started) {
-            ESP_LOGI(TAG, "WiFi disconnected, deinit Coze chat");
-            coze_chat_app_deinit();
-            s_coze_started = false;
-        }
+        // if (s_coze_started) {
+        //     ESP_LOGI(TAG, "WiFi disconnected, deinit Coze chat");
+        //     coze_chat_app_deinit();
+        //     s_coze_started = false;
+        // }
         break;
 
     default:
@@ -168,4 +169,11 @@ void app_main(void)
     
     // 启动音频管理器（开始录音和VAD检测）
     ESP_ERROR_CHECK(audio_manager_start());
+    
+    // 延迟3秒后测试TTS（等待系统稳定）
+    ESP_LOGI(TAG, "Wait 3s before TTS test...");
+    vTaskDelay(pdMS_TO_TICKS(3000));
+    
+    // 测试TTS组件
+    tts_test_init_and_play();
 }
