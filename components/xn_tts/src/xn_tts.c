@@ -1,6 +1,6 @@
 #include "xn_tts.h"
 #include "esp_tts.h"
-#include "esp_tts_voice_xiaole.h"
+#include "esp_tts_voice_xiaoxin.h"
 #include "esp_tts_voice_template.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
@@ -9,8 +9,8 @@
 
 // 声明嵌入的语音数据文件
 // 可选音色: xiaole (小乐), xiaoxin (小新), xiaoxin_small (小新精简版)
-extern const uint8_t voice_data_xiaole_start[] asm("_binary_esp_tts_voice_data_xiaole_dat_start");
-extern const uint8_t voice_data_xiaole_end[] asm("_binary_esp_tts_voice_data_xiaole_dat_end");
+extern const uint8_t voice_data_xiaoxin_start[] asm("_binary_esp_tts_voice_data_xiaoxin_dat_start");
+extern const uint8_t voice_data_xiaoxin_end[] asm("_binary_esp_tts_voice_data_xiaoxin_dat_end");
 
 // 日志标签
 static const char *TAG = "XN_TTS";
@@ -68,11 +68,11 @@ xn_tts_handle_t xn_tts_init(const xn_tts_config_t *config)
     memcpy(&ctx->config, config, sizeof(xn_tts_config_t));
 
     // 获取嵌入的语音数据
-    size_t voice_data_size = voice_data_xiaole_end - voice_data_xiaole_start;
+    size_t voice_data_size = voice_data_xiaoxin_end - voice_data_xiaoxin_start;
     ESP_LOGI(TAG, "Voice data size: %d bytes", voice_data_size);
 
     // 使用模板和数据初始化语音集
-    ctx->voice = esp_tts_voice_set_init(&esp_tts_voice_xiaole, (void *)voice_data_xiaole_start);
+    ctx->voice = esp_tts_voice_set_init(&esp_tts_voice_xiaoxin, (void *)voice_data_xiaoxin_start);
     if (ctx->voice == NULL) {
         ESP_LOGE(TAG, "Failed to init voice set");
         free(ctx);

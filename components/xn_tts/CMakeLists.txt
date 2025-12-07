@@ -7,7 +7,7 @@ idf_component_register(
     PRIV_REQUIRES
         freertos
     EMBED_FILES
-        "esp_tts/esp_tts_voice_data_xiaole.dat"
+        "esp_tts/esp_tts_voice_data_xiaoxin.dat"
 )
 
 # 添加ESP-TTS库路径

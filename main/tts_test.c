@@ -55,8 +55,8 @@ void tts_test_init_and_play(void)
 
     // 3. 播放测试语音
     ESP_LOGI(TAG, "Playing test speech...");
-    // 使用标点符号和停顿增加韵律感
-    int ret = xn_tts_speak_chinese(tts, "你好！我是小乐语音助手。TTS组件，测试成功！");
+    // 使用简单文本测试
+    int ret = xn_tts_speak_chinese(tts, "你好 我是小新");
     
     if (ret == 0) {
         ESP_LOGI(TAG, "TTS test completed successfully");
